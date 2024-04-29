@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="text-start">
+<body class="text-start"> 
     <header class="d-flex position-fixed flex-wrap">
         <div class="container-fluid d-flex align-items-center" id="header_main_nav">
             <div id="page_back" class="d-flex align-items-center">
@@ -67,10 +67,10 @@
     
 
     <main>
-        <div class="wrapper container-fluid">
-        <section id="activity" class="active_page">
+        <div class="wrapper">
+        <section id="activity" class="active_page container">
             <div id="activity_container" class="row">
-                <div class="col-md-8 col order-md-1 order-2" class="posts">
+                <div class="col-md-9 col order-md-1 order-2" class="posts">
                     <div class="post img_post mb-5 d-flex flex-column gap-2">
                         <img src="img/User_photo.png" alt="User picture">
                         <div class="commenter">
@@ -125,7 +125,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="user_nav" class="col-md-4 col order-md-2 order-1">
+                <div id="user_nav" class="col-md-3 col order-md-2 order-1">
                     <article id="user_info" class="mb-5 d-flex justify-content-center text-center flex-column">
                         <img src="img/Profile_photo.png" id="user_photo" alt="Profile photo" class="mb-3">
                         <div id="main_info">
@@ -148,19 +148,19 @@
                         </div>
                         <div class="navigation_to_hide">
                             <nav>
-                                <ul class="list-unstyled">
-                                    <li><img src="img/My_profile.png" alt="My profile" class="me-2">My profile</li>
-                                    <li><img src="img/Balance.png" alt="Balance" class="me-2">Balance</li>
-                                    <li><img src="img/Connections.png" alt="Connections" class="me-2">Connections</li>
-                                    <li><img src="img/Friends.png" alt="Friends" class="me-2">Friends</li>
+                                <ul class="list-unstyled ">
+                                    <li><a><img src="img/My_profile.png" alt="My profile" class="me-2">My profile</a></li>
+                                    <li class="d-flex justify-content-between"><a><img src="img/Balance.png" alt="Balance" class="me-2">Balance</a><span class="text-secondary">$1,430</span></li>
+                                    <li class="d-flex justify-content-between"><a><img src="img/Connections.png" alt="Connections" class="me-2">Connections</a><span class="badge bg-danger rounded-pill">29</span</li>
+                                    <li><a><img src="img/Friends.png" alt="Friends" class="me-2">Friends</a></li>
                                 </ul>
                             </nav>
                         </div>
                         <div class="navigation_to_hide">
                             <nav>
                                 <ul class="list-unstyled">
-                                    <li><img src="img/Events.png" alt="Events" class="me-2">Events</li>
-                                    <li><img src="img/Settings.png" alt="Settings" class="me-2">Account settings</li>
+                                    <li class="d-flex justify-content-between"><a><img src="img/Events.png" alt="Events" class="me-2">Events</a><span class="badge bg-success rounded-pill">45</span</li>
+                                    <li><a><img src="img/Settings.png" alt="Settings" class="me-2">Account settings</a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -180,7 +180,7 @@
             </div>
         </section>
 
-        <section id="map" class='not_active_pages col-md-11'>
+        <section id="map" class='not_active_pages container'>
             <div class="section_header d-flex justify-content-between align-items-center">
                 <p>Basic Map</p>
                 <div class="section_settings d-flex justify-content-between text-center align-items-center">
@@ -195,7 +195,7 @@
             </div>
         </section>
 
-        <section id="time" class='not_active_pages col-md-11'>
+        <section id="time" class='not_active_pages container'>
             <div class="section_header  d-flex justify-content-between align-items-center">
                 <p>Timer</p>
                 <div class="section_settings d-flex justify-content-between text-center align-items-center">
