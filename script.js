@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const navLinks = document.querySelectorAll('nav a');
   const sections = document.querySelectorAll('main section');
-  history.pushState(null, '', '/TestTaskJS/#activity');
+  //history.pushState(null, '', '/TestTaskJS/#activity');
 
   navLinks.forEach(link => {
     link.addEventListener('click', event => {
@@ -16,11 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
       navLinks.forEach(link => link.parentNode.classList.remove('active_link'));
       link.parentNode.classList.add('active_link');
-      history.pushState(null, '', '/TestTaskJS/' + targetId);
+      //history.pushState(null, '', '/TestTaskJS/' + targetId);
     });
   });
     
-  window.addEventListener('popstate', event => {
+  /* window.addEventListener('popstate', event => {
     const sectionId = location.hash;
     const targetSection = document.querySelector(sectionId);
 
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     navLinks.forEach(link => link.parentNode.classList.remove('active_link'));
     document.querySelector(`nav a[href="${sectionId}"]`).parentNode.classList.add('active_link');
-  });
+  }); */
 
   let startTime = Date.now();
 
