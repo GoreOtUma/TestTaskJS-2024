@@ -50,13 +50,32 @@ h1 {
 
 .h_span {
     font-size: 18px;
+    font-weight: 400;
     line-height: 21.09px;
+}
+
+.viewers_count, .comments_count {
+    line-height: 18.75px;
+}
+
+.nav-link {
+    color: #505050;
+    text-decoration: none;
+}
+
+.nav-link:focus, .nav-link:hover {
+    color: #505050;
+}
+
+p {
+    margin: 0;
 }
 
 h4 {
     font-size: 14px;
     font-weight: 500;
     line-height: 20px;
+    margin: 0;
 }
 
 #main_nav div {
@@ -97,6 +116,26 @@ section {
 
 #user_info {
     height: 294px;
+}
+
+.span_balance {
+    color: #8F8F8F;
+    font-size: 12px;
+    line-height: 14.06px;
+}
+
+.bg-danger {
+    background: #E33939;
+    font-family: VTB Group UI;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.bg-success {
+    background: #47B091;
+    font-family: VTB Group UI;
+    font-size: 12px;
+    font-weight: 400;
 }
 
 h3  {
@@ -143,22 +182,25 @@ h2 {
     border-top: medium solid #f1f1f1;
 }
 
-.share_thoughts_input {
-    width: 232px;
-}
-
 #message_input {
     border: 1px solid #D3D8DE;
+    color: #8F8F8F;
+    font-size: 14px;
     height: 88px;
+    line-height: 20px;
     resize: none;
 }
 
 #save_button {
     background-color: #5095EC;
     border: none;
-    display: block;
     height: 32px;
-    margin: auto;
+}
+
+.btn-primary {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
 }
 
 .post_time {
@@ -263,7 +305,7 @@ img {
     }
 }
 
-@media screen and (min-width: 721px) {
+@media screen and (min-width: 720px) {
     .menu_hidden {
         display: flex;
         align-items: center;
@@ -284,4 +326,10 @@ img {
         padding-left: 0;
         padding-right: 8px;
     }
+}
+
+.menu_visible {
+    position: fixed;
+    right: 0;
+    top:30px;
 }
