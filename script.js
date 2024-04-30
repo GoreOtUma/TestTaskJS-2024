@@ -28,39 +28,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelector('#timer').textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
   }, 1000);
-
-  var menuMainHeader = document.getElementById("menu_main_header");
-  var menuHeader = document.getElementById("menu_header");
   
-  var mainNav = document.getElementById("main_nav");
-  var headerNavSettings = document.getElementById("header_nav_settings");
-  
-  function toggleVisibility(element) {
-  if (element.classList.contains("menu_hidden")) {
-   element.classList.remove("menu_hidden");
-   element.classList.add("menu_visible");
-  } else {
-   element.classList.add("menu_hidden");
-   element.classList.remove("menu_visible");
-  }
-  }
-  
-  menuMainHeader.addEventListener("click", function() {
-   toggleVisibility(mainNav);
-  });
-  
-  menuHeader.addEventListener("click", function() {
-  toggleVisibility(headerNavSettings);
-  });
+  AdaptHeader()
 });
 
 ymaps.ready(init);
+
 function init(){
   var myMap = new ymaps.Map("map_img", {
     center: [51.83, 107.6],
     zoom: 8
   });
-
 
   var loader = document.getElementById('loader');
   loader.style.display = 'none';
@@ -76,5 +54,45 @@ function init(){
   var myPlacemark = new ymaps.Placemark([51.83, 107.6], {
     hintContent: 'Улан-Удэ'
   });
-myMap.geoObjects.add(myPlacemark);
+  myMap.geoObjects.add(myPlacemark);
+}
+
+function AdaptHeader() {
+  var menuMainHeader = document.getElementById("menu_main_header");
+  var menuHeader = document.getElementById("menu_header");
+  
+  var mainNav = document.getElementById("main_nav");
+  var headerNavSettings = document.getElementById("header_nav_settings");
+  
+  function VisibilityMainHeader(element) {
+    if (element.classList.contains("menu_hidden")) {
+      element.classList.remove("menu_hidden");
+      element.classList.add("menu_main_visible");
+      headerNavSettings.classList.remove("menu_visible");
+      headerNavSettings.classList.add("menu_hidden");
+    } else {
+      element.classList.add("menu_hidden");
+      element.classList.remove("menu_main_visible");
+    }
+  }
+
+  function VisibilityHeader(element) {
+    if (element.classList.contains("menu_hidden")) {
+      element.classList.remove("menu_hidden");
+      element.classList.add("menu_visible");
+      mainNav.classList.remove("menu_main_visible");
+      mainNav.classList.add("menu_hidden");
+    } else {
+      element.classList.add("menu_hidden");
+      element.classList.remove("menu_visible");
+    }
+  }
+  
+  menuMainHeader.addEventListener("click", function() {
+   VisibilityMainHeader(mainNav);
+  });
+  
+  menuHeader.addEventListener("click", function() {
+  VisibilityHeader(headerNavSettings);
+  });
 }
