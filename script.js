@@ -1,17 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  let startTime = Date.now();
-
-  setInterval(() => {
-    const timeElapsed = Math.floor((Date.now() - startTime) / 1000);
-    const hours = Math.floor(timeElapsed / 3600);
-    const minutes = Math.floor(timeElapsed / 60);
-    const seconds = timeElapsed % 60;
-
-    document.querySelector('#timer').textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-  }, 1000);
+  start_time();
 
   let currentTab = localStorage.getItem('selectedTab') || '#activity';
+  if (!currentTab) {
+    currentTab = '#activity';S
+  }
   let triggerTabList = [].slice.call(document.querySelectorAll('#myTab a'))
 
   triggerTabList.forEach(function (triggerEl) {
@@ -26,23 +20,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let activeTriggerEl = triggerTabList.find(triggerEl => triggerEl.getAttribute('href') === currentTab);
   if (activeTriggerEl) {
-      var tabTrigger = new bootstrap.Tab(activeTriggerEl);
-      tabTrigger.show();
+    var tabTrigger = new bootstrap.Tab(activeTriggerEl);
+    tabTrigger.show();
   }
 
   window.addEventListener('popstate', function(event) {
     const currentURL = document.location.hash;
-    const activeTriggerEl = triggerTabList.find(triggerEl => triggerEl.getAttribute('href') === currentURL);
+    let activeTriggerEl;
+    if (currentURL === '' || currentURL === '#') {
+      activeTriggerEl = triggerTabList.find(triggerEl => triggerEl.getAttribute('href') === '#activity');
+    } 
+    else {
+      activeTriggerEl = triggerTabList.find(triggerEl => triggerEl.getAttribute('href') === currentURL);
+    }
     if (activeTriggerEl) {
       var tabTrigger = new bootstrap.Tab(activeTriggerEl);
       tabTrigger.show();
       currentTab = currentURL;
       localStorage.setItem('selectedTab', currentTab);
-    } else {
+    } 
+    else {
       activeTriggerEl = triggerTabList.find(triggerEl => triggerEl.getAttribute('href') === currentTab);
       if (activeTriggerEl) {
-          var tabTrigger = new bootstrap.Tab(activeTriggerEl);
-          tabTrigger.show();
+        var tabTrigger = new bootstrap.Tab(activeTriggerEl);
+        tabTrigger.show();
       }
     }
   });
@@ -102,4 +103,19 @@ function AdaptHeader() {
     listItem.appendChild(child.cloneNode(true));
     menuMainHeader.appendChild(listItem);
   }
+}
+
+let startTime
+function start_time() {
+  startTime = Date.now();
+
+  setInterval(() => {
+    const timeElapsed = Math.floor((Date.now() - startTime) / 1000);
+    const hours = Math.floor(timeElapsed / 3600);
+    const minutes = Math.floor(timeElapsed / 60);
+    const seconds = timeElapsed % 60;
+
+    document.querySelector('#timer').textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+  }, 1000);
+
 }
