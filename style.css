@@ -84,7 +84,7 @@ h4 {
 }
 
 #navigation {
-    height: 312px;
+    max-height: 312px;
 }
 
 header nav ul {
@@ -343,4 +343,9 @@ img {
 
 .btn {
     color: #505050;
+}
+
+.btn-group-sm>.btn, .btn-sm {
+    padding: .1rem .5rem;
+    font-size: .82rem;
 }
