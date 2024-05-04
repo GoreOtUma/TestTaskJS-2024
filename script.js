@@ -113,7 +113,7 @@ function start_time() {
   setInterval(() => {
     const timeElapsed = Math.floor((Date.now() - startTime) / 1000);
     const hours = Math.floor(timeElapsed / 3600);
-    const minutes = Math.floor(timeElapsed / 60);
+    const minutes = Math.floor((timeElapsed / 60) % 60);
     const seconds = timeElapsed % 60;
 
     document.querySelector('#timer').textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
@@ -121,7 +121,6 @@ function start_time() {
 }
 
 function HideElems() {
-
   let dropdown_share_thoughts = document.getElementById("dropdown_share_thoughts")
   let share_to_hide = document.getElementById("share_to_hide")
   dropdown_share_thoughts.addEventListener('click', function(event) {
