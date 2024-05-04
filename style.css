@@ -344,8 +344,3 @@ img {
 .btn {
     color: #505050;
 }
-
-.btn-group-sm>.btn, .btn-sm {
-    padding: .1rem .5rem;
-    font-size: .82rem;
-}
