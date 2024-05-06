@@ -6,6 +6,7 @@
     <title>Test Task. JS</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 <body class="text-start"> 
     <header class="d-flex position-fixed flex-wrap w-100 container-fluid">
@@ -30,17 +31,20 @@
                     Schedule
                 </div>
             </div>
-            <img src="img/Menu.png" alt="Menu" class="nav_btn" id="menu_main_header">
+            <div class="dropdown" id="menu_main_header">
+                <button class="btn dropdown-toggle" type="button" id="dropdown_menu_main" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                <ul class="dropdown-menu" id="dropdown_menu_main_ul"></ul>
+            </div>
         </div>
         <div id="header_nav" class="ps-5 pe-5 justify-content-between text-center d-flex align-items-center flex-wrap w-100">
             <div id="header_nav_pages">
                 <nav>
-                    <ul class="nav d-flex align-items-center flex-wrap">
-                        <li class="nav-item  active_link"><a class="nav-link link-underline-opacity-0" href="#activity">
+                    <ul class="nav nav-tabs align-items-center flex-wrap" id="myTab">
+                        <li class="nav-item"><a class="nav-link link-underline-opacity-0 d-flex align-items-center" href="#activity" data-toggle="tab">
                             <img src="img/Activity_img.png" alt="Activity" class="me-3">Activity</a></li>
-                        <li class="nav-item"><a class="nav-link link-underline-opacity-0" href="#map">
+                        <li class="nav-item"><a class="nav-link link-underline-opacity-0 d-flex align-items-center" href="#map" data-toggle="tab">
                             <img src="img/Map_img.png" alt="Map" class="me-3">Map</a></li>
-                        <li class="nav-item"><a class="nav-link link-underline-opacity-0" href="#time">
+                        <li class="nav-item"><a class="nav-link link-underline-opacity-0 d-flex align-items-center" href="#time" data-toggle="tab">
                             <img src="img/Time_img.png" alt="Time" class="me-3">Time</a></li>
                     </ul>
                 </nav>
@@ -63,14 +67,17 @@
                     <img src="img/Show_all.png" id="show_all_img" alt="Show all" class="me-3">
                 </div>
             </div>
-            <img src="img/Menu.png" alt="Menu" class="nav_btn" id="menu_header">
+            <div class="dropdown"id="menu_header">
+                <button class="btn dropdown-toggle" type="button" id="dropdown_menu" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                <ul class="dropdown-menu" id="dropdown_menu_ul"></ul>
+            </div>
         </div>
     </header>
     
 
     <main>
-        <div class="wrapper mb-5">
-        <section id="activity" class="active_page container">
+        <div class="wrapper mb-5 tab-content">
+        <section id="activity" class="container tab-pane fade">
             <div id="activity_container" class="row gap-md-0 gap-2">
                 <div class="col-md-9 col order-md-1 order-2 posts">
                     <div class="post img_post mb-4 ps-4 pe-4 pt-5 pb-4 d-flex flex-column gap-4">
@@ -146,7 +153,7 @@
                     <article id="navigation" class="mb-4">
                         <div class="article_header d-flex justify-content-between align-items-center text-center p-2 ps-3 pe-3">
                             <h4>Navigation</h4>
-                            <img src="img/Hide.png" alt="Hide" class="me-3">
+                            <img src="img/Hide.png" alt="Hide" class="me-3" id="dropdown_navigation" >
                         </div>
                         <div class="navigation_to_hide p-3">
                             <nav>
@@ -180,9 +187,9 @@
                     <article id="share_thoughts" class="mb-4">
                         <div class="article_header d-flex justify-content-between align-items-center text-center p-2 ps-3 pe-3">
                             <h4>Share your thoughts</h4>
-                            <img src="img/Hide.png" alt="Hide" class="me-3">
+                            <img src="img/Hide.png" alt="Hide" class="me-3" id="dropdown_share_thoughts">
                         </div>
-                        <div class="share_to_hide p-3 pt-2">
+                        <div class="share_to_hide p-3 pt-2" id="share_to_hide">
                             <textarea class="form-control share_thoughts_input rounded mb-2 pt-1 pb-1 ps-3 pe-3"  id="message_input" placeholder="Enter your message..."></textarea>
                             <button class="btn btn-primary btn-sm btn-block rounded share_thoughts_input w-100" id="save_button">Save</button>
                         </div>
@@ -191,13 +198,13 @@
             </div>
         </section>
 
-        <section id="map" class='not_active_pages container p-4'>
+        <section id="map" class='container p-4 tab-pane fade'>
             <div class="section_header d-flex justify-content-between align-items-center pb-4">
                 <p>Basic Map</p>
                 <div class="section_settings d-flex justify-content-between text-center align-items-center">
-                    <img src="img/Show_more.png" alt="Show more" class="me-3">
-                    <img src="img/Reload_section.png" alt="Reload" class="me-3">
-                    <img src="img/Close_section.png" alt="Close" class="me-3">
+                    <img src="img/Show_more.png" alt="Show more" class="me-3" id="dropdown_map" >
+                    <img src="img/Reload_section.png" alt="Reload" class="me-3" onclick="reload_map()">
+                    <img src="img/Close_section.png" alt="Close" class="me-3" id="close_map">
                 </div>
             </div>
             <div id="map_img" class="d-flex justify-content-center align-items-center">
@@ -206,20 +213,19 @@
             </div>
         </section>
 
-        <section id="time" class='not_active_pages container p-4'>
-            <div class="section_header  d-flex justify-content-between align-items-center pb-4">
+        <section id="time" class='container p-4 tab-pane fade'>
+            <div class="section_header d-flex justify-content-between align-items-center pb-4">
                 <p>Timer</p>
                 <div class="section_settings d-flex justify-content-between text-center align-items-center">
-                    <img src="img/Show_more.png" alt="Show more" class="me-3">
-                    <img src="img/Reload_section.png" alt="Reload" class="me-3">
-                    <img src="img/Close_section.png" alt="Close" class="me-3">
+                    <img src="img/Show_more.png" alt="Show more" class="me-3" id="dropdown_timer" >
+                    <img src="img/Reload_section.png" alt="Reload" class="me-3" onclick="start_time()">
+                    <img src="img/Close_section.png" alt="Close" class="me-3" id="close_timer">
                 </div>
             </div>
             <span id="timer"></span> 
         </section>
-    </div>
+        </div>
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://api-maps.yandex.ru/2.1/?apikey=a205aeac-db8a-4544-9105-7b64e5be57e8&lang=ru_RU" type="text/javascript"></script>
     <script src="script.js"></script>
 </body>
