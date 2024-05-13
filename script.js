@@ -2,56 +2,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
   start_time();
 
-  let currentTab = localStorage.getItem('selectedTab') || '#activity';
-  if (!currentTab) {
-    currentTab = '#activity';
-  }
+  let currentTab = getCurrentTabFromURL() || '#activity';
 
-  let triggerTabList = [].slice.call(document.querySelectorAll('#myTab a'))
+  let triggerTabList = [].slice.call(document.querySelectorAll('#myTab a'));
+
   triggerTabList.forEach(function (triggerEl) {
-    var tabTrigger = new bootstrap.Tab(triggerEl)
-
     triggerEl.addEventListener('click', function (event) {
-      tabTrigger.show()
-      currentTab = triggerEl.getAttribute('href');
-      localStorage.setItem('selectedTab', currentTab);
+      event.preventDefault();
+      const tabId = triggerEl.getAttribute('href');
+      showTab(tabId);
+      currentTab = tabId;
+      updateURL(currentTab);
     })
-  })
-
-  let activeTriggerEl = triggerTabList.find(triggerEl => triggerEl.getAttribute('href') === currentTab);
-  if (activeTriggerEl) {
-    var tabTrigger = new bootstrap.Tab(activeTriggerEl);
-    tabTrigger.show();
-  }
+  });
 
   window.addEventListener('popstate', function(event) {
-    const currentURL = document.location.hash;
-    let activeTriggerEl;
-    if (currentURL === '' || currentURL === '#') {
-      activeTriggerEl = triggerTabList.find(triggerEl => triggerEl.getAttribute('href') === '#activity');
-    } 
-    else {
-      activeTriggerEl = triggerTabList.find(triggerEl => triggerEl.getAttribute('href') === currentURL);
-    }
-    if (activeTriggerEl) {
-      var tabTrigger = new bootstrap.Tab(activeTriggerEl);
-      tabTrigger.show();
-      currentTab = currentURL;
-      localStorage.setItem('selectedTab', currentTab);
-    } 
-    else {
-      activeTriggerEl = triggerTabList.find(triggerEl => triggerEl.getAttribute('href') === currentTab);
-      if (activeTriggerEl) {
-        var tabTrigger = new bootstrap.Tab(activeTriggerEl);
-        tabTrigger.show();
-      }
-    }
+    currentTab = getCurrentTabFromURL() || '#activity';
+    showTab(currentTab);
   });
 
   HideElems();
   AdaptHeader();
-});
 
+  if (!document.location.hash) {
+    showTab('#activity');
+  }
+
+  function getCurrentTabFromURL() {
+    const hash = document.location.hash;
+    return hash ? hash : null;
+  }
+
+  function showTab(tabId) {
+    const activeTriggerEl = triggerTabList.find(triggerEl => triggerEl.getAttribute('href') === tabId);
+    if (activeTriggerEl) {
+      const tabTrigger = new bootstrap.Tab(activeTriggerEl);
+      tabTrigger.show();
+    }
+  }
+
+  function updateURL(tabId) {
+    history.pushState(null, null, tabId);
+  }
+});
 
 ymaps.ready(init);
 
