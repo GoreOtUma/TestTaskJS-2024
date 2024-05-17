@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  start_time();
+  startTime();
 
-  let currentTab = getCurrentTabFromURL() || '#activity';
+  let currentTab = getCurrentTabFromURL();
 
-  let triggerTabList = [].slice.call(document.querySelectorAll('#myTab a'));
+  const triggerTabList = [].slice.call(document.querySelectorAll('#myTab a'));
 
   triggerTabList.forEach(function (triggerEl) {
     triggerEl.addEventListener('click', function (event) {
@@ -16,21 +16,19 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   });
 
-  window.addEventListener('popstate', function(event) {
-    currentTab = getCurrentTabFromURL() || '#activity';
+  window.addEventListener('popstate', function() {
+    currentTab = getCurrentTabFromURL();
     showTab(currentTab);
   });
 
-  HideElems();
-  AdaptHeader();
-
-  if (!document.location.hash) {
-    showTab('#activity');
-  }
+  hideElems();
+  adaptHeader();
+  showTab(currentTab);
+  updateURL(currentTab);
 
   function getCurrentTabFromURL() {
     const hash = document.location.hash;
-    return hash ? hash : null;
+    return hash || '#activity';
   }
 
   function showTab(tabId) {
@@ -38,6 +36,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (activeTriggerEl) {
       const tabTrigger = new bootstrap.Tab(activeTriggerEl);
       tabTrigger.show();
+    }
+
+    if (tabId === '#map') {
+      document.getElementById('map').classList.remove('d-none');
+    } else if (tabId === '#time') {
+      document.getElementById('time').classList.remove('d-none');
     }
   }
 
@@ -48,14 +52,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ymaps.ready(init);
 
-var myMap
+let myMap;
 function init(){
   myMap = new ymaps.Map("map_img", {
     center: [51.83, 107.6],
     zoom: 8
   });
 
-  var loader = document.getElementById('loader');
+  const loader = document.getElementById('loader');
   loader.style.display = 'none';
 
   myMap.events.add('tilesloadstart', function () {
@@ -72,39 +76,42 @@ function init(){
   myMap.geoObjects.add(myPlacemark);
 }
 
-function reload_map() {
+function reloadMap() {
   myMap.destroy()
   init()
 }
 
-function AdaptHeader() {
-  let menuMainHeader = document.querySelector("#menu_main_header .dropdown-menu");
-  let mainNav = document.getElementById("main_nav");
+function adaptHeader() {
+  const menuMainHeader = document.querySelector("#menu_main_header .dropdown-menu");
+  const mainNav = document.getElementById("main_nav");
+  adaptObject(menuMainHeader, mainNav);
 
-  let menuHeader = document.querySelector('#menu_header .dropdown-menu');
-  let headerNavSettings = document.getElementById("header_nav_settings");
+  const menuHeader = document.querySelector('#menu_header .dropdown-menu');
+  const headerNavSettings = document.getElementById("header_nav_settings");
+  adaptObject(menuHeader,  headerNavSettings);
+}
 
-  for (const child of headerNavSettings.children) {
+function adaptObject(mainObject, childObject) {
+  for (const child of childObject.children) {
     const listItem = document.createElement('li');
     listItem.classList.add('dropdown-item');
     listItem.appendChild(child.cloneNode(true));
-    menuHeader.appendChild(listItem);
-  }
-
-  for (const child of mainNav.children) {
-    const listItem = document.createElement('li');
-    listItem.classList.add('dropdown-item');
-    listItem.appendChild(child.cloneNode(true));
-    menuMainHeader.appendChild(listItem);
+    mainObject.appendChild(listItem);
   }
 }
 
-let startTime
-function start_time() {
-  startTime = Date.now();
+let timer;
+function startTime() {
+  const savedStartTime = sessionStorage.getItem('timerStart');
+  if (savedStartTime) {
+    timer = parseInt(savedStartTime, 10);
+  } else {
+    timer = Date.now();
+    sessionStorage.setItem('timerStart', timer);
+  }
 
   setInterval(() => {
-    const timeElapsed = Math.floor((Date.now() - startTime) / 1000);
+    const timeElapsed = Math.floor((Date.now() - timer) / 1000);
     const hours = Math.floor(timeElapsed / 3600);
     const minutes = Math.floor((timeElapsed / 60) % 60);
     const seconds = timeElapsed % 60;
@@ -113,62 +120,48 @@ function start_time() {
   }, 1000);
 }
 
-function HideElems() {
-  let dropdown_share_thoughts = document.getElementById("dropdown_share_thoughts")
-  let share_to_hide = document.getElementById("share_to_hide")
-  dropdown_share_thoughts.addEventListener('click', function(event) {
-    if (share_to_hide.classList.contains('d-none')) {
-      share_to_hide.classList.remove('d-none')
-    }
-    else {
-      share_to_hide.classList.add('d-none')
-    }
+function hideElems() {
+  const dropdownShareThoughts = document.getElementById("dropdown_share_thoughts");
+  const shareToHide = document.getElementById("share_to_hide");
+  dropdownShareThoughts.addEventListener('click', function() {
+    hideObject(shareToHide);
   })
 
-  let dropdown_navigation = document.getElementById("dropdown_navigation")
-  let navigation_to_hide = document.getElementsByClassName("navigation_to_hide")
-  dropdown_navigation.addEventListener('click', function(event) {
-    Array.from(navigation_to_hide).forEach(function (navigation) {
-      if (navigation.classList.contains('d-none')) {
-        navigation.classList.remove('d-none')
-      }
-      else {
-        navigation.classList.add('d-none')
-      }
-    })
+  const dropdownNavigation = document.getElementById("dropdown_navigation");
+  const navigationToHide = document.getElementsByClassName("navigation_to_hide");
+  dropdownNavigation.addEventListener('click', function() {
+    Array.from(navigationToHide).forEach(navigation => hideObject(navigation));
+  }) 
+
+  const dropdownMap = document.getElementById("dropdown_map");
+  const mapImg = document.getElementById("map_img");
+  dropdownMap.addEventListener('click', function() {
+    hideObject(mapImg);
   })
 
-  let dropdown_map = document.getElementById("dropdown_map")
-  let map_img = document.getElementById("map_img")
-  dropdown_map.addEventListener('click', function(event) {
-    if (map_img.classList.contains('d-none')) {
-      map_img.classList.remove('d-none')
-    }
-    else {
-      map_img.classList.add('d-none')
-    }
+  const dropdownTimer = document.getElementById("dropdown_timer");
+  const timerField = document.getElementById("timer");
+  dropdownTimer.addEventListener('click', function() {
+    hideObject(timerField);
   })
 
-  let dropdown_timer = document.getElementById("dropdown_timer")
-  let timer = document.getElementById("timer")
-  dropdown_timer.addEventListener('click', function(event) {
-    if (timer.classList.contains('d-none')) {
-      timer.classList.remove('d-none')
-    }
-    else {
-      timer.classList.add('d-none')
-    }
+  const closeTimer = document.getElementById("close_timer");
+  const time = document.getElementById("time");
+  closeTimer.addEventListener('click', function() {
+      time.classList.add('d-none');
   })
 
-  let close_timer = document.getElementById("close_timer")
-  let time = document.getElementById("time")
-  close_timer.addEventListener('click', function(event) {
-      time.classList.add('d-none')
+  const closeMap = document.getElementById("close_map");
+  const map = document.getElementById("map");
+  closeMap.addEventListener('click', function() {
+    map.classList.add('d-none');
   })
+}
 
-  let close_map = document.getElementById("close_map")
-  let map = document.getElementById("map")
-  close_map.addEventListener('click', function(event) {
-    map.classList.add('d-none')
-  })
+function hideObject(elem) {
+  if (elem.classList.contains('d-none')) {
+    elem.classList.remove('d-none');
+  } else {
+    elem.classList.add('d-none');
+  }
 }
