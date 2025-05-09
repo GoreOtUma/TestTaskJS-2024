@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Task. JS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <script async src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</head>
+<body class="text-start"> 
+    <header class="d-flex position-fixed flex-wrap w-100 container-fluid">
+        <div class="ps-5 pe-5 pt-2 pb-2 container-fluid justify-content-between text-center d-flex align-items-center flex-wrap" id="header_main_nav">
+            <div id="page_back" class="d-flex align-items-center">
+                <h1>
+                    <img src="img/Page_back.png" id="page_back_img" alt="Back" class="me-2">User pages
+                    <span class="h_span"> - Profile</span>
+                </h1>
+            </div>
+            <div id="main_nav" class="menu_hidden">
+                <div id="statistics" class="me-3 d-flex align-items-center flex-wrap justify-content-center">
+                    <img src="img/Statistics.png" id="statistics_img" alt="Statistics" class="me-1">
+                    Statistics
+                </div>
+                <div id="invoices" class="me-3 d-flex align-items-center flex-wrap justify-content-center">
+                    <img src="img/Invoices.png" id="invoices_img" alt="Invoices" class="me-1">
+                    Invoices
+                </div>
+                <div id="shedule" class="me-3 d-flex align-items-center flex-wrap justify-content-center">
+                    <img src="img/Shedule.png" id="shedule_img" alt="Shedule" class="me-1 ">
+                    Schedule
+                </div>
+            </div>
+            <div class="dropdown" id="menu_main_header">
+                <button class="btn dropdown-toggle" type="button" id="dropdown_menu_main" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                <ul class="dropdown-menu" id="dropdown_menu_main_ul"></ul>
+            </div>
+        </div>
+        <div id="header_nav" class="ps-5 pe-5 justify-content-between text-center d-flex align-items-center flex-wrap w-100">
+            <div id="header_nav_pages">
+                <nav>
+                    <ul class="nav nav-tabs align-items-center flex-wrap" id="myTab">
+                        <li class="nav-item"><a class="nav-link link-underline-opacity-0 d-flex align-items-center" href="#activity" data-toggle="tab">
+                            <img src="img/Activity_img.png" alt="Activity" class="me-3">Activity</a></li>
+                        <li class="nav-item"><a class="nav-link link-underline-opacity-0 d-flex align-items-center" href="#map" data-toggle="tab">
+                            <img src="img/Map_img.png" alt="Map" class="me-3">Map</a></li>
+                        <li class="nav-item"><a class="nav-link link-underline-opacity-0 d-flex align-items-center" href="#time" data-toggle="tab">
+                            <img src="img/Time_img.png" alt="Time" class="me-3">Time</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div id="header_nav_settings" class="menu_hidden">
+                <div id="notes" class="me-4 d-flex align-items-center">
+                    <img src="img/Notes.png" id="notes_img" alt="Notes" class="me-2">
+                    Notes
+                </div>
+                <div id="friends" class="me-4 d-flex align-items-center">
+                    <img src="img/Friends.png" id="friends_img" alt="Friends" class="me-2">
+                    Friends
+                </div>
+                <div id="photos" class="me-4 d-flex align-items-center">
+                    <img src="img/Photos.png" id="photos_img" alt="Photos" class="me-2">
+                    Photos
+                </div>
+                <div id="settings" class="me-4 d-flex align-items-center">
+                    <img src="img/Settings.png" id="settings_img" alt="Settings" class="me-3">
+                    <img src="img/Show_all.png" id="show_all_img" alt="Show all" class="me-3">
+                </div>
+            </div>
+            <div class="dropdown"id="menu_header">
+                <button class="btn dropdown-toggle" type="button" id="dropdown_menu" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                <ul class="dropdown-menu" id="dropdown_menu_ul"></ul>
+            </div>
+        </div>
+    </header>
+    
+
+    <main>
+        <div class="wrapper mb-5 tab-content">
+        <section id="activity" class="container tab-pane fade">
+            <div id="activity_container" class="row gap-md-0 gap-2">
+                <div class="col-md-9 col order-md-1 order-2 posts">
+                    <div class="post img_post mb-4 ps-4 pe-4 pt-5 pb-4 d-flex flex-column gap-4">
+                        <img src="img/User_photo.png" alt="User picture">
+                        <div class="commenter">
+                            <img src="img/Comments.png" class="me-2" alt="Comment">
+                            <a href="" class='text-decoration-none'>Jason Anderson</a> 
+                            <span>commented:</span>
+                        </div>
+                        <div class="comment ps-2">
+                            <div class="text_comment mb-3">
+                                Don’t sit and wait. Get out there, feel life. Touch the sun, and immerse in the sea. Keep love in your heart. 
+                                A life without it is like a sunless garden when the flowers are dead. Because summer is passion, memories, 
+                                light breeze, the sun that appears on the skin and caresses the face.
+                            </div>
+                            <div class="comment_info">
+                                <span class="author">– Jason,</span>
+                                <span class="comment_time fst-italic">10:30 am</span>
+                            </div>
+                        </div>
+                        <div class="post_info d-flex">
+                            <div class="me-5">
+                                <img src="img/Viewers.png" alt="Viewers" class="me-1"> 
+                                <span class="viewers_count">432</span>
+                            </div>
+                            <div class="comments">
+                                <img src="img/Comments.png" alt="Comments" class="me-1">
+                                <span class="comments_count">47</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post text_post mb-4 p-4 d-flex justify-content-between">
+                        <div class="text_comment">
+                            Sunset Sunset Sunset
+                        </div>
+                        <div class="post_info d-flex justify-content-between">
+                            <img src="img/Time_img.png" alt="Time" class="me-2">
+                            <div class="post_time me-2">
+                                53 minutes ago
+                            </div>
+                            <img src="img/Show_more_black.png" alt="Time" class="me-2"> 
+                        </div>
+                    </div>
+                    <div class="post text_post mb-4 p-4 d-flex justify-content-between">
+                        <div class="text_comment">
+                            Morning of Siberia
+                        </div>
+                        <div class="post_info d-flex justify-content-between">
+                            <img src="img/Time_img.png" alt="Time" class="me-2">
+                            <div class="post_time me-2">
+                                56 minutes ago
+                            </div>
+                            <img src="img/Show_more_black.png" alt="Time" class="me-2"> 
+                        </div>
+                    </div>
+                </div>
+                <div id="user_nav" class="col-md-3 col order-md-2 order-1 w-sm-100 d-md-block d-flex justify-content-center flex-column align-items-center">
+                    <article id="user_info" class="mb-4 d-flex justify-content-center text-center flex-column gap-3">
+                        <img src="img/Profile_photo.png" class="ms-auto me-auto rounded-circle" id="user_photo" alt="Profile photo">
+                        <div id="main_info">
+                            <h3>Hanna Dorman</h3>
+                            <ul class="skills list-unstyled">
+                                <li>UX/UI designer</li>
+                            </ul>
+                        </div>  
+                        <div class="contacts d-flex flex-wrap justify-content-center">
+                            <img src="img/Telegram.png" alt="Telegram" class="me-2">
+                            <img src="img/Hh.png" alt="Hh" class="me-2">
+                            <img src="img/Twitter.png" alt="Twitter">
+                        </div>
+                    </article>
+                    
+                    <article id="navigation" class="mb-4">
+                        <div class="article_header d-flex justify-content-between align-items-center text-center p-2 ps-3 pe-3">
+                            <h4>Navigation</h4>
+                            <img src="img/Hide.png" alt="Hide" class="me-3" id="dropdown_navigation" >
+                        </div>
+                        <div class="navigation_to_hide p-3">
+                            <nav>
+                                <ul class="list-unstyled gap-4">
+                                    <li><a><img src="img/My_profile.png" alt="My profile" class="me-2">My profile</a></li>
+                                    <li class="d-flex justify-content-between">
+                                        <a><img src="img/Balance.png" alt="Balance" class="me-2">Balance</a>
+                                        <span class="span_balance">$1,430</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between">
+                                        <a><img src="img/Connections.png" alt="Connections" class="me-2">Connections</a>
+                                        <span class="badge bg-danger rounded-pill" id="span_connections">29</span>
+                                    </li>
+                                    <li><a><img src="img/Friends.png" alt="Friends" class="me-2">Friends</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="navigation_to_hide p-3">
+                            <nav>
+                                <ul class="list-unstyled gap-4">
+                                    <li class="d-flex justify-content-between">
+                                        <a><img src="img/Events.png" alt="Events" class="me-2">Events</a>
+                                        <span class="badge bg-success rounded-pill" id="span_events">45</span>
+                                    </li>
+                                    <li><a><img src="img/Settings.png" alt="Settings" class="me-2">Account settings</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </article>
+
+                    <article id="share_thoughts" class="mb-4">
+                        <div class="article_header d-flex justify-content-between align-items-center text-center p-2 ps-3 pe-3">
+                            <h4>Share your thoughts</h4>
+                            <img src="img/Hide.png" alt="Hide" class="me-3" id="dropdown_share_thoughts">
+                        </div>
+                        <div class="share_to_hide p-3 pt-2" id="share_to_hide">
+                            <textarea class="form-control share_thoughts_input rounded mb-2 pt-1 pb-1 ps-3 pe-3"  id="message_input" placeholder="Enter your message..."></textarea>
+                            <button class="btn btn-primary btn-sm btn-block rounded share_thoughts_input w-100" id="save_button">Save</button>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="map" class='container p-4 tab-pane fade'>
+            <div class="section_header d-flex justify-content-between align-items-center pb-4">
+                <p>Basic Map</p>
+                <div class="section_settings d-flex justify-content-between text-center align-items-center">
+                    <img src="img/Show_more.png" alt="Show more" class="me-3" id="dropdown_map" >
+                    <img src="img/Reload_section.png" alt="Reload" class="me-3" onclick="reloadMap()">
+                    <img src="img/Close_section.png" alt="Close" class="me-3" id="close_map">
+                </div>
+            </div>
+            <div id="map_img" class="d-flex justify-content-center align-items-center">
+                <div id="loader" class="loader"></div>
+                <div id="map_user"></div>
+            </div>
+        </section>
+
+        <section id="time" class='container p-4 tab-pane fade'>
+            <div class="section_header d-flex justify-content-between align-items-center pb-4">
+                <p>Timer</p>
+                <div class="section_settings d-flex justify-content-between text-center align-items-center">
+                    <img src="img/Show_more.png" alt="Show more" class="me-3" id="dropdown_timer" >
+                    <img src="img/Reload_section.png" alt="Reload" class="me-3" onclick="startTime()">
+                    <img src="img/Close_section.png" alt="Close" class="me-3" id="close_timer">
+                </div>
+            </div>
+            <span id="timer"></span> 
+        </section>
+        </div>
+    </main>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=a205aeac-db8a-4544-9105-7b64e5be57e8&lang=ru_RU" type="text/javascript"></script>
+    <script src="script.js"></script>
+</body>
+</html>
